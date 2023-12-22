@@ -177,7 +177,8 @@ export default class ExtractHighlightsPlugin extends Plugin {
 				// Keep surrounding paragraph for context
 				if(this.settings.createContextualQuotes) {
 					for(var i = 0; i < cleanedLines.length; i++) {
-						let match = cleanedLines[i].match(entry);
+						let escapedEntry = entry.replace(/[-[\]{}()*+?.,\\^$|#]/g, '\\$&');
+						let match = cleanedLines[i].match(escapedEntry);
 						if(!(match == null) && match.length > 0) {
 							let val = cleanedLines[i];
 
